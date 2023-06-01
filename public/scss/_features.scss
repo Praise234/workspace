@@ -1,0 +1,150 @@
+//
+// _features.scss
+//
+
+/*********************************/
+/*         Features              */
+/*===============================*/
+.features {
+    @each $name,
+    $value in $colors {
+        &.feature-#{$name} {
+            .icons {
+                i {
+                    background: linear-gradient(45deg, $value, $danger) !important;
+                }
+            }
+            .title {
+                &:hover {
+                    background: -webkit-linear-gradient(45deg, $value, $danger);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+.features {
+    transition: all 0.5s ease;
+    .title {
+        transition: all 0.5s ease;        
+    }
+    .icons {
+        i {
+            height: 90px;
+            width: 90px;
+        }
+    }
+}
+
+//Timeline
+.timeline-page {
+    &:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        right: -1px;
+        top: 0px;
+        width: 1px;
+        height: 100%;
+        margin: auto;
+        border-right: 2px dashed $gray-300 !important;
+    }
+    .timeline-item {
+        .date-label-left, .duration-right {
+            &:after,
+            &:before {
+                position: absolute;
+                content: "";
+                border-radius: 50%;
+                z-index: 1;
+            }
+            &:after {
+                top: 9px;
+                width: 10px;
+                height: 10px;
+                background-color: $primary;
+            }
+
+            &:before {
+                border: 2px dashed $gray-300;
+                top: 0;
+                width: 28px;
+                height: 28px;
+                background-color: $white;
+            }
+        }
+        .date-label-left {            
+            float: right;
+            margin-right: 24px;
+            &:after {                
+                right: -41px;
+            }
+
+            &:before {                
+                right: -50px;
+            }
+        }        
+        .duration-right {
+            float: left;
+            margin-left: 24px;
+            &:after {                
+                left: -41px;
+            }
+
+            &:before {                
+                left: -50px;
+            }
+        }
+        .event {
+            transition: all 0.2s ease;
+            .title {
+                font-weight: 500;
+                transition: all 0.2s ease;
+            }
+            &.event-description-right {
+                text-align: left;
+                margin-left: 24px;
+            }
+            &.event-description-left {
+                text-align: right;
+                margin-right: 24px;
+            }
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .timeline-page {
+        margin-left: 18px;
+        &:after {
+            margin: 0;
+        }
+        .timeline-item {
+            .duration {
+                float: left !important;
+                margin-left: 30px !important;
+                margin-right: auto !important;
+                text-align: left !important;
+                &:after {
+                    left: -34px !important;
+                }
+                &:before {
+                    left: -42px !important;
+                }
+                .event {
+                    text-align: left !important;
+                    margin-left: 15px;
+                }
+            }
+            .event {
+                &.event-description-left,
+                &.event-description-right {
+                    text-align: left !important;
+                    margin: 0 0 0 30px !important;
+                }
+            }
+        }
+    }
+}

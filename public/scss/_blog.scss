@@ -1,0 +1,22 @@
+//
+// _blog.scss
+//
+
+/*********************************/
+/*         Blog                  */
+/*===============================*/
+
+.blog {
+    @each $name,
+    $value in $colors {
+        &.blog-#{$name} {
+            .title {
+                &:hover {
+                    background: -webkit-linear-gradient(45deg, $value, $danger);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+    }
+}
