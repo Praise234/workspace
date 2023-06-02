@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;  
+use PHPMailer\PHPMailer\Exception;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bookings;
