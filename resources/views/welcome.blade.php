@@ -156,9 +156,9 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-12 mb-4 pb-2">
                         <div class="section-title text-center">
-                            <!-- <h4 class="title mb-4">Book a space with us <br /><i class="text-pink">(hourly, daily or monthly)</i></h4>
-                            <p class="para-desc mx-auto mb-0" style="color: #FF7733">Private offices, Board Room, Virtual Office, Children Playroom or host your events in our space .</p> -->
-                            <p class="para-desc mx-auto mb-0" style="color: rgba(60,60,60, 1);font-size: 1.27em;font-family: Playfair Display;font-weight: bold;">We have designed our pricing plans to be flexible and affordable, to meet your unique needs.
+                            <h2 class="title mb-4" style="font-family: Playfair Display;">Pricing</h2>
+                            <!-- <p class="para-desc mx-auto mb-0" style="color: #FF7733">Private offices, Board Room, Virtual Office, Children Playroom or host your events in our space .</p> --> 
+                            <p class="para-desc mx-auto mb-0" style="color: rgba(60,60,60, 1);font-size: 1em;font-family: Playfair Display;font-weight: bold;">We have designed our pricing plans to be flexible and affordable, to meet your unique needs.
                              <br /> Book a space with us!</p>
                         </div>
                     </div><!--end col-->
@@ -223,8 +223,8 @@
                 <div class="row justify-content-center">
                     <div class="col-12 mb-4 pb-2">
                         <div class="section-title text-center">
-                            <!-- <h4 class="title mb-4">Get In Touch!</h4> -->
-                            <p class="para-desc mx-auto mb-0" style="color: rgba(60,60,60,1);;font-size: 1.5em;font-family: Playfair Display;font-weight: bold;">Having issues booking? Get in touch!</p>
+                            <h2 class="title mb-4" style="font-family: Playfair Display;">Contact Us</h2>
+                            <p class="para-desc mx-auto mb-0" style="color: rgba(60,60,60,1);font-size: 1em;font-family: Playfair Display;font-weight: bold;">Having issues booking? Get in touch!</p>
                         </div>
                     </div><!--end col-->
                 </div><!--end row-->
@@ -696,9 +696,9 @@
                                     </div><!--end col-->
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label class="form-label fs-6">No of seats <span class="text-danger">*</span></label>
+                                        @if($product->name == 'virtual_office' || $product->name == 'event_space') @else <label class="form-label fs-6">No of seats <span class="text-danger">*</span></label> @endif
                                             <div class="form-icon position-relative">
-                                                <input type="number" onfocusout="availabilityCheck{{$product->id}}()" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="no_of_seats{{$product->id}}" id="no_of_seats_modal{{$product->id}}" placeholder="No of seats" value="1" required="">
+                                                <input type="@if($product->name == 'virtual_office' || $product->name == 'event_space'){{'hidden'}}@else{{'number'}}@endif" onfocusout="availabilityCheck{{$product->id}}()" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="no_of_seats{{$product->id}}" id="no_of_seats_modal{{$product->id}}" placeholder="No of seats" value="1" required="">
                                             </div>
                                         </div>
                                     </div><!--end col-->

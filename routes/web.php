@@ -21,6 +21,7 @@ Route::get('/administrator/logout', [adminController::class, 'logout'])->name('l
 Route::get('/check_coworkspace_availability', [adminController::class, 'checkCoworkspaceAvailability'])->name('check_coworkspace_availability');
 Route::get('/book_now', [adminController::class, 'BookNow'])->name('book_now');
 Route::post('/book_coworkspace_page', [adminController::class, 'bookCoworkspacePage'])->name('book_coworkspace_page');
+Route::post('/send_mail', [adminController::class, 'SendMail'])->name('send_mail');
 Route::middleware(['auth_check'])->group(function () {
     Route::prefix('administrator')->group(function () {
         Route::get('/',  [adminController::class, 'dashboard'])->name('dashboard');
