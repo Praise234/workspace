@@ -473,33 +473,43 @@ class adminController extends Controller
      }
      public function SendMail(Request $request){
         $to = 'pakzzy207@gmail.com'; 
-        $from = 'hello@shecluded.com'; 
-        $fromName = $request->name; 
-        
-        $subject = $request->subject; 
-        
-        $htmlContent = $request->email . " " . $request->comments . ' 
-            <html> 
-            <head> 
-                <title>Welcome to CodexWorld</title> 
-            </head> 
-            <body> 
-            <img src="images/logo.png" />
-                <h1>Thanks you for joining with us!</h1> 
-                <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
-                    <tr> 
-                        <th>Name:</th><td>CodexWorld</td> 
-                    </tr> 
-                    <tr style="background-color: #e0e0e0;"> 
-                        <th>Email:</th><td>contact@codexworld.com</td> 
-                    </tr> 
-                    <tr> 
-                        <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
-                    </tr> 
-                </table> 
-            </body> 
-            </html>'; 
 
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 0;
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPAuth = false;
+        // $mail->Username = 'admin@theresurgenceinternational.com.ng';
+        // $mail->Password = 'TRIMJUNe@2023';
+        $mail->setFrom('hello@shecluded.com','hub.shecluded.com');
+        $mail->addAddress($request->email, $request->name);
+        $mail->Subject =  $request->subject;
+        $mail->isHTML(true);
+        $mail->html = '  <html> 
+        <head> 
+            <title>Welcome to CodexWorld</title> 
+        </head> 
+        <body> 
+        <img src="images/logo.png" />
+            <h1>Thanks you for joining with us!</h1> 
+            <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
+                <tr> 
+                    <th>Name:</th><td>CodexWorld</td> 
+                </tr> 
+                <tr style="background-color: #e0e0e0;"> 
+                    <th>Email:</th><td>contact@codexworld.com</td> 
+                </tr> 
+                <tr> 
+                    <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
+                </tr> 
+            </table> 
+        </body> 
+        </html>';
+        
+        $mail->send();
+       
             // Set content-type header for sending HTML email 
         $headers = "MIME-Version: 1.0" . "\r\n"; 
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n"; 
