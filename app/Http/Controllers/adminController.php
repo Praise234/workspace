@@ -13,7 +13,7 @@ class adminController extends Controller
 {
     public function dashboard(){
         $bookings = Bookings::limit(5)->get();
-        $products = Products::get();
+        $products = Products::whereNot('name', 'children_playroom')->get();
 
         return view('admin.dashboard', compact(['bookings', 'products']));
     }
@@ -89,7 +89,7 @@ class adminController extends Controller
 
           $delimeters = [
             'total_slots'=>'required|numeric|gt:0',
-            // 'price'=>'required|numeric|gt:0',
+            
         ];
           if($request->product_name !== 'coworkspace'){
             $delimeters = [
@@ -97,13 +97,21 @@ class adminController extends Controller
                 'price'=>'required|numeric|gt:0',
             ];
         }
-        if($request->file('prodImg')){
+        if($request->file('prodImg') && $request->product_name !== 'coworkspace'){
               $delimeters = [
                 'prodImg'=>'required|mimes:jpeg,png,jpg',
                 'total_slots'=>'required|numeric|gt:0',
                 'price'=>'required|numeric|gt:0',
               ];
         }
+        if($request->file('prodImg') && $request->product_name == 'coworkspace'){
+              $delimeters = [
+                'prodImg'=>'required|mimes:jpeg,png,jpg',
+                'total_slots'=>'required|numeric|gt:0',
+               
+              ];
+        }
+
        
 
           $validator = Validator::make($request->all(), $delimeters, $messages);

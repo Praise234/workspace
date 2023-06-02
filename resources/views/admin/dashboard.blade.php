@@ -167,6 +167,13 @@
                                     @case ('children_playroom')
                                         {{"CHILDREN PLAYROOM"}}
                                         @break
+				    @case ('coworkspace_weekly')
+					{{"COWORKSPACE WEEKLY"}}
+					@break
+				    @case ('coworkspace_monthly')
+                                        {{"COWORKSPACE MONTHLY"}}
+                                        @break
+
                                     @default
                                         {{"EVENT SPACE"}}
                                         @break
@@ -177,9 +184,9 @@
                             <td>#{{$product->price . ".00"}}</td>
                             <td>
                               <div class="d-flex align-items-center gap-3 fs-6">
-                                <a href="javascript:;" class="text-dark ms-3" data-bs-toggle="modal" data-bs-target="#viewProduct{{$booking->id}}" title="" data-bs-original-title="Edit info" aria-label="Edit"  data-bs-toggle="modal" data-bs-target="#viewTruck"><i class="bi bi-eye-fill"></i></a>
+                                <a href="javascript:;" class="text-dark ms-3" data-bs-toggle="modal" data-bs-target="#viewProduct{{$product->id}}" title="" data-bs-original-title="Edit info" aria-label="Edit"  data-bs-toggle="modal" data-bs-target="#viewTruck"><i class="bi bi-eye-fill"></i></a>
                                  <!-- Modal -->
-                                 <div class="modal fade" id="viewProduct{{$booking->id}}" tabindex="-1" aria-hidden="true">
+                                 <div class="modal fade" id="viewProduct{{$product->id}}" tabindex="-1" aria-hidden="true">
                                   <div class="modal-dialog modal-fullscreen">
                                     <div class="modal-content">
                                       <div class="modal-header">
@@ -217,6 +224,13 @@
                                                     @case ('children_playroom')
                                                         {{"CHILDREN PLAYROOM"}}
                                                         @break
+                                                     @case ('coworkspace_weekly')
+			                                   {{"COWORKSPACE WEEKLY"}}
+                        			           @break
+                                                     @case ('coworkspace_monthly')
+                                      			    {{"COWORKSPACE MONTHLY"}}
+                                                            @break
+
                                                     @default
                                                         {{"EVENT SPACE"}}
                                                         @break
