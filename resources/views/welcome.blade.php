@@ -468,7 +468,7 @@
                     });
             }
             function bookNow(e){
-              
+              	e.preventDefault();
                 if(document.getElementById("cus_name_modal").value.trim() == ""){
                     $("#error_modal").html("Please enter your name");
                             $('#errorcoworkspace_modal').show();
@@ -492,7 +492,7 @@
                         break;
                 }
                 let handler = PaystackPop.setup({
-                    key: '', // Replace with your public key
+                    key: 'pk_live_f23f6c56185fef862a989e2925a39154125e2dc8', // Replace with your public key
                     email: document.getElementById("cus_email_modal").value,
                     amount:  $('#no_of_seats_modal').val() * amn * 100,
                     currency: 'NGN',
@@ -697,9 +697,8 @@
                                     </div><!--end col-->
                                     <div class="col-md-12">
                                         <div class="mb-3">
-                                        @if($product->name == 'virtual_office' || $product->name == 'event_space') @else <label class="form-label fs-6">No of seats <span class="text-danger">*</span></label> @endif
-                                            <div class="form-icon position-relative">
-                                                <input type="@if($product->name == 'virtual_office' || $product->name == 'event_space'){{'hidden'}}@else{{'number'}}@endif" onfocusout="availabilityCheck{{$product->id}}()" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="no_of_seats{{$product->id}}" id="no_of_seats_modal{{$product->id}}" placeholder="No of seats" value="1" required="">
+   					    <div class="form-icon position-relative">
+                                                <input type="{{'hidden'}}" onfocusout="availabilityCheck{{$product->id}}()" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="no_of_seats{{$product->id}}" id="no_of_seats_modal{{$product->id}}" placeholder="No of seats" value="1" required="">
                                             </div>
                                         </div>
                                     </div><!--end col-->
@@ -787,7 +786,7 @@
                 }
                 $('#errorcoworkspace_modal{{$product->id}}').hide();
                 let handler = PaystackPop.setup({
-                    key: 'pk_test_3248bbae2c658532acf5f6a659ef5cd225aedb64', // Replace with your public key
+                    key: 'pk_live_f23f6c56185fef862a989e2925a39154125e2dc8', // Replace with your public key
                     email: document.getElementById("cus_email_modal{{$product->id}}").value,
                     amount:  $('#no_of_seats_modal{{$product->id}}').val() * {{$product->price}} * 100,
                     currency: 'NGN',

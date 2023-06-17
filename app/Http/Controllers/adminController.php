@@ -438,7 +438,7 @@ class adminController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-            "Authorization: Bearer ",
+            "Authorization: Bearer sk_live_21c313cf610824542ac99a466b7d2a382e76d6bf",
             "Cache-Control: no-cache",
             ),
         ));
@@ -480,17 +480,17 @@ class adminController extends Controller
 
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = 1;
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
-        $mail->SMTPAuth = false;
-        // $mail->Username = 'admin@theresurgenceinternational.com.ng';
-        // $mail->Password = 'TRIMJUNe@2023';
-        $mail->setFrom('hello@shecluded.com','hub.shecluded.com');
+        $mail->SMTPAuth = true;
+        $mail->Username = 'shecludedhub01@gmail.com';
+        $mail->Password = 'hello@shecluded.com';
+        $mail->setFrom('shecludedhub01@gmail.com','hub.shecluded.com');
         $mail->addAddress($request->email, $request->name);
         $mail->Subject =  $request->subject;
         $mail->isHTML(true);
-        $mail->html = '  <html> 
+        $mail->Body = '  <html> 
         <head> 
             <title>Welcome to CodexWorld</title> 
         </head> 
