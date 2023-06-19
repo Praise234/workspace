@@ -42,36 +42,7 @@ class adminController extends Controller
 
     public function showProducts(Request $request){
         $prod_name = "";
-        switch ($request->product_name) {
-            case 'coworkspace':
-                $prod_name = "COWORKSPACE";
-                break;
-            case 'coworkspace_daily':
-                $prod_name = "COWORKSPACE DAILY";
-                break;
-            case 'coworkspace_weekly':
-                $prod_name = "COWORKSPACE WEEKLY";
-                break;
-            case 'coworkspace_monthly':
-                $prod_name = "COWORKSPACE MONTHLY";
-                break;
-            case 'private_offices':
-                $prod_name = "PRIVATE OFFICE";
-                break;
-            case 'meeting_room':
-                $prod_name = "MEETING ROOM";
-                break;
-            case 'virtual_office':
-                $prod_name = "VIRTUAL OFFICE";
-                break;
-            case 'children_playroom':
-                $prod_name = "CHILDREN PLAYROOM";
-                break;
-            
-            default:
-                $prod_name = "EVENT SPACE";
-                break;
-        }
+        
 
         $product_name = $request->product_name;
 
