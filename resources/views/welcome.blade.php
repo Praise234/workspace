@@ -215,6 +215,63 @@
         </section><!--end section-->
         <!-- End -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+         <!-- Start -->
+         <section class="section" style="background-color:#FFC95C;" id="contact">
+            <div class="container">
+                
+                <div class="row align-items-center">
+                    <div class="col-12 mt-4 pt-2">
+                        <video height="540" class="row align-items-center" style="margin:auto;" controls>
+                            <source src="/videos/shecluded.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div><!--end container-->
+        </section><!--end section-->
+        <!-- End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        
 
         <!-- Start -->
@@ -287,33 +344,23 @@
         <!--Google Maps-->
 
         <!-- Start Footer -->
-        <footer class="bg-footer footer-bar">
+        <footer class=" footer-bar">
             <div class="footer-py-30">
                 <div class="container text-center">
                     <div class="row align-items-center">
-                        <div class="col-sm-3">
+                        <div class="col-md-3">
                             <div class="text-sm-start">
                                 <a href="#" class="logo-footer">
-                                    <img src="images/logo-light.png" alt="" width="200px">
+                                    <img src="images/logo.png" alt="" width="200px">
                                 </a>
                             </div>
                         </div>
 
-                        <div class="col-sm-6 mt-4 mt-sm-0 pt-2 pt-sm-0">
-                            <div class="text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Shecluded.</p>
+                        <div class="col-md-9">
+                            <div class="text-lg-end">
+                                <p class="text-dark h5">© <script>document.write(new Date().getFullYear())</script> Shecluded.</p>
                             </div>
                         </div>
-    
-                        <!-- <div class="col-sm-3 mt-4 mt-sm-0 pt-2 pt-sm-0"> -->
-                            <!-- <ul class="list-unstyled social-icon foot-social-icon text-sm-end mb-0">
-                                <li class="list-inline-item mb-0"><a href=""><i data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
-                                <li class="list-inline-item mb-0"><a href=""><i data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
-                                <li class="list-inline-item mb-0"><a href=""><i data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
-                                <li class="list-inline-item mb-0"><a href=""><i data-feather="linkedin" class="fea icon-sm fea-social"></i></a></li>
-                            </ul> -->
-                            <!--end icon-->
-                        <!-- </div> -->
                         <!--end col-->
                     </div><!--end row-->
                 </div><!--end container-->
