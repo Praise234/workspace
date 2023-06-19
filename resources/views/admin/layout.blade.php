@@ -88,6 +88,27 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ URL::to('administrator/products/coworkspace_daily')}}" class="menu-label mt-3">
+                        <div class="parent-icon"><i class="bi bi-laptop"></i>
+                        </div>
+                        <div class="menu-title">Coworkspace Daily</div>
+                    </a>
+                </li> 
+                <li>
+                    <a href="{{ URL::to('administrator/products/coworkspace_weekly')}}" class="menu-label mt-3">
+                        <div class="parent-icon"><i class="bi bi-laptop"></i>
+                        </div>
+                        <div class="menu-title">Coworkspace Weekly</div>
+                    </a>
+                </li> 
+                <li>
+                    <a href="{{ URL::to('administrator/products/coworkspace_monthly')}}" class="menu-label mt-3">
+                        <div class="parent-icon"><i class="bi bi-laptop"></i>
+                        </div>
+                        <div class="menu-title">Coworkspace Monthly</div>
+                    </a>
+                </li> 
+                <li>
                     <a href="{{ URL::to('administrator/products/private_offices')}}" class="menu-label mt-3">
                         <div class="parent-icon"><i class="bi bi-building"></i>
                         </div>
@@ -111,6 +132,7 @@
                         <div class="menu-title">Virtual Office</div>
                     </a>
                 </li> 
+               
 
                 <!-- <li>
                     <a href="{{ URL::to('administrator/products/children_playroom')}}" class="menu-label mt-3">

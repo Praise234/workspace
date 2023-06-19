@@ -24,6 +24,7 @@
                         {{ $success }}
                     </div>
                 @endif
+                @if(request()->route('product_name') !== 'coworkspace_daily' && request()->route('product_name') !== 'coworkspace_weekly' && request()->route('product_name') !== 'coworkspace_monthly')
                 <form class="row g-3" method="post" enctype="multipart/form-data" action="{{ route('product_update', [request()->route('product_name')]) }}">
                   @csrf
                   @foreach($products as $product)
@@ -49,6 +50,34 @@
                     </div>
                   </div>
                 </form>
+
+
+                @else
+
+
+                <form class="row g-3" method="post" enctype="multipart/form-data" action="{{ route('product_update', [request()->route('product_name')]) }}">
+                  @csrf
+                  @foreach($products as $product)
+                  <div class="col-12">
+                    <label class="form-label">Price</label>
+                    <input type="text"  class="form-control" name="price" value="{{$product->price}}">
+                  </div>
+                  @endforeach
+                  <div class="col-12">
+                    <div class="d-grid">
+                      <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                  </div>
+                </form>
+                @endif
+
+
+
+
+
+
+
+
                 </div>
 
   

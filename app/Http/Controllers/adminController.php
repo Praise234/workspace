@@ -46,6 +46,15 @@ class adminController extends Controller
             case 'coworkspace':
                 $prod_name = "COWORKSPACE";
                 break;
+            case 'coworkspace_daily':
+                $prod_name = "COWORKSPACE DAILY";
+                break;
+            case 'coworkspace_weekly':
+                $prod_name = "COWORKSPACE WEEKLY";
+                break;
+            case 'coworkspace_monthly':
+                $prod_name = "COWORKSPACE MONTHLY";
+                break;
             case 'private_offices':
                 $prod_name = "PRIVATE OFFICE";
                 break;
@@ -139,6 +148,15 @@ class adminController extends Controller
             case 'coworkspace':
                 $prod_name = "COWORKSPACE";
                 break;
+            case 'coworkspace_daily':
+                $prod_name = "COWORKSPACE DAILY";
+                break;
+            case 'coworkspace_weekly':
+                $prod_name = "COWORKSPACE WEEKLY";
+                break;
+            case 'coworkspace_monthly':
+                $prod_name = "COWORKSPACE MONTHLY";
+                break;
             case 'private_offices':
                 $prod_name = "PRIVATE OFFICE";
                 break;
@@ -158,6 +176,9 @@ class adminController extends Controller
         }
 
         $product_name = $request->product_name;
+        if($product_name == "coworkspace_daily"){
+            $product_name = "coworkspace";
+        }
 
         
         $products = Products::where(['name' => $product_name])->get();
