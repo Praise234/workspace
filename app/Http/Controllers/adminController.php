@@ -388,7 +388,7 @@ class adminController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "GET",
             CURLOPT_HTTPHEADER => array(
-            "Authorization: Bearer sk_live_21c313cf610824542ac99a466b7d2a382e76d6bf",
+            "Authorization: Bearer ",
             "Cache-Control: no-cache",
             ),
         ));
