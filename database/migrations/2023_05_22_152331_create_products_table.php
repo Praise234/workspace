@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->integer('total_slots');
+            $table->integer('open_saturday');
+            $table->integer('open_sunday');
             $table->string('imgUrl');
             $table->timestamps();
         });

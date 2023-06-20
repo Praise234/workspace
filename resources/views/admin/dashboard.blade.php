@@ -179,35 +179,7 @@
                                               <tbody>
                                                 <tr class="text-center">
                                                   <td>Product</td>
-                                                  <td>
-                                                  @switch ($product->name) 
-                                                    @case ('coworkspace')
-                                                        {{"COWORKSPACE"}}
-                                                        @break
-                                                    @case ('private_offices')
-                                                        {{"PRIVATE OFFICE"}}
-                                                        @break
-                                                    @case ('meeting_room')
-                                                        {{"MEETING ROOM"}}
-                                                        @break
-                                                    @case ('virtual_office')
-                                                        {{"VIRTUAL OFFICE"}}
-                                                        @break
-                                                    @case ('children_playroom')
-                                                        {{"CHILDREN PLAYROOM"}}
-                                                        @break
-                                                     @case ('coworkspace_weekly')
-			                                   {{"COWORKSPACE WEEKLY"}}
-                        			           @break
-                                                     @case ('coworkspace_monthly')
-                                      			    {{"COWORKSPACE MONTHLY"}}
-                                                            @break
-
-                                                    @default
-                                                        {{"EVENT SPACE"}}
-                                                        @break
-                                                  @endswitch
-                                                  </td>
+                                                  <td>{{$product->name}}</td>
                                                 </tr>
                                                 <tr class="text-center">
                                                   <td>Total Slots</td>
