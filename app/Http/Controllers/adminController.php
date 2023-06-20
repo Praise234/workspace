@@ -16,7 +16,7 @@ class adminController extends Controller
 {
     public function dashboard(){
         $bookings = Bookings::limit(5)->get();
-        $products = Products::whereNot('name', 'children_playroom')->get();
+        $products = Products::get();
 
         return view('admin.dashboard', compact(['bookings', 'products']));
     }
@@ -24,9 +24,7 @@ class adminController extends Controller
 
     public function confirmBooking(){
         $bookings = Bookings::paginate(10);
-        $products = Products::whereNot('name', 'coworkspace_weekly')
-                            ->whereNot('name', 'coworkspace_monthly')
-                            ->whereNot('name', 'children_playroom')->get();
+        $products = Products::get();
 
         return view('admin.confirm', compact(['bookings', 'products']));
     }
@@ -41,10 +39,7 @@ class adminController extends Controller
     }
 
     public function showProducts(Request $request){
-        $prod_name = "";
-        
-
-        $product_name = $request->product_name;
+       $product_name = $request->product_name;
 
         $products = Products::where(['name' => $product_name])->get();
         return view('admin.products', compact(['prod_name', 'products']));
@@ -114,42 +109,8 @@ class adminController extends Controller
 
 
 
-        $prod_name = "";
-        switch ($request->product_name) {
-            case 'coworkspace':
-                $prod_name = "COWORKSPACE";
-                break;
-            case 'coworkspace_daily':
-                $prod_name = "COWORKSPACE DAILY";
-                break;
-            case 'coworkspace_weekly':
-                $prod_name = "COWORKSPACE WEEKLY";
-                break;
-            case 'coworkspace_monthly':
-                $prod_name = "COWORKSPACE MONTHLY";
-                break;
-            case 'private_offices':
-                $prod_name = "PRIVATE OFFICE";
-                break;
-            case 'meeting_room':
-                $prod_name = "MEETING ROOM";
-                break;
-            case 'virtual_office':
-                $prod_name = "VIRTUAL OFFICE";
-                break;
-            case 'children_playroom':
-                $prod_name = "CHILDREN PLAYROOM";
-                break;
-            
-            default:
-                $prod_name = "EVENT SPACE";
-                break;
-        }
-
         $product_name = $request->product_name;
-        if($product_name == "coworkspace_daily"){
-            $product_name = "coworkspace";
-        }
+       
 
         
         $products = Products::where(['name' => $product_name])->get();
@@ -409,10 +370,7 @@ class adminController extends Controller
      }
 
      public function welcome(){
-        $products = Products::whereNot('name', 'coworkspace')
-                                ->whereNot('name', 'coworkspace_weekly')
-                                ->whereNot('name', 'coworkspace_monthly')
-                                ->whereNot('name', 'children_playroom')->get();
+        $products = Products::whereNot('name', 'coworkspace')->get();
 
         $coworkspace = Products::where(['name' => 'coworkspace'])->get();
  
