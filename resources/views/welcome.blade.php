@@ -4,6 +4,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
+       
 		<meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <title>Shecluded - Co Workspace</title>
@@ -22,13 +23,17 @@
         <link href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link> 
-	    <!-- Custom  Css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	   
+        <!-- Custom  Css -->
 	    <link href="css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
         <style>
             /* @media (min-width: 600px) {  */
                 #home{
                     background: url('storage/{{$coworkspace[0]->imgUrl}}') center center;
                     background-size: auto;
+                }
+            a:hover{
+                    text-decoration: underline;
                 }
                 
             /* } */
@@ -344,7 +349,7 @@
         <!--Google Maps-->
 
         <!-- Start Footer -->
-        <footer class=" footer-bar bg-dark">
+        <!-- <footer class=" footer-bar bg-dark">
             <div class="footer-py-30">
                 <div class="container text-center">
                     <div class="row align-items-center">
@@ -361,12 +366,144 @@
                                 <p class="text-white h5">© <script>document.write(new Date().getFullYear())</script> Shecluded.</p>
                             </div>
                         </div>
-                        <!--end col-->
-                    </div><!--end row-->
-                </div><!--end container-->
+                        
+                    </div>
+                </div>
             </div>
-        </footer><!--end footer-->
+        </footer> -->
+        <!--end footer-->
         <!-- End Footer -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        <!-- start footer -->
+        <footer class=" footer-bar" style="background-color: #000;">
+            <div class="footer-py-30 ">
+                <div class="container py-5">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-2 col-md-6">
+                            <div class="widget about-widget">
+                                <div class="footer-logo">
+                                    <img src="images/logo-light.png" alt style="width:200px;">
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6 col-lg-3 text-center">
+                            <div class="widget donate-widget">
+                                <h4 class="widget-title text-white">Who We Are</h4>
+                                <ul class = "list-unstyled ">
+                                    <li class ="p-2"><a href="https://shecluded.com/about" class="text-white link">About Us</a></li>
+                                    <li class ="p-2"><a href="https://shecluded.com/about" class="text-white link">What we do</a></li>
+                                    <li class ="p-2"><a href="https://shecluded.com/about" class="text-white link">Who we serve</a></li>
+                                    <li class ="p-2"><a href="https://shecluded.com/about" class="text-white link">Our Services</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6 col-lg-2 text-center">
+                            <div class="widget action-widget">
+                                <h4 class="widget-title text-white">Support</h4>
+                                <ul class = "list-unstyled">
+                                    <li class ="p-2"><a href="https://shecluded.com/faq" class="text-white link">FAQs</a></li>
+                                    <li class ="p-2"><a href="https://t.me/+DJAseXicKRRiYijRk" class="text-white link">Community</a></li>
+                                    <li class ="p-2"><a href="https://shecluded.com/contact" class="text-white link">Contact Us</a></li>
+                                    <li class ="p-2"><br /></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6 col-lg-2 text-center ">
+                            <div class="widget action-widget">
+                                <h4 class="widget-title text-white">Legal</h4>
+                                <ul class = "list-unstyled">
+                                    <li class ="p-2"><a href="https://shecluded.com/terms" class="text-white link">Cookies Policy</a></li>
+                                    <li class ="p-2"><a href="https://shecluded.com/terms" class="text-white link">Privacy Policy</a></li>
+                                    <li class ="p-2"><a href="https://shecluded.com/terms" class="text-white link">Terms of Service</a></li>
+                                    <li class ="p-2"><br /></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="widget action-widget">
+                            <p class="widget-title h6 mx-auto">Connect with us</p>
+                                <ul class = "list-unstyled social-links d-flex">
+                                    <li class ="p-2 m-1 text-center" style="background-color: #eb2590;border-radius: 60px;width:40px;" ><a href="https://instagram.com/shecluded" target="_blank"><i class="fa fa-instagram text-white"></i></a></li>
+                                    <li class ="p-2 m-1 text-center" style="background-color: #eb2590;border-radius: 60px;width:40px;" ><a href="https://twitter.com/shecluded" target="_blank"><i class="fa fa-twitter text-white"></i></a></li>
+                                    <li class ="p-2 m-1 text-center" style="background-color: #eb2590;border-radius: 60px;width:40px;" ><a href="https://www.youtube.com/channel/UCw-HgPM7ZkveoxnYuths-LQ" target="_blank" ><i class="fa fa-youtube text-white"></i></a></li>
+                                    <li class ="p-2 m-1 text-center" style="background-color: #eb2590;border-radius: 60px;width:40px;" ><a href="https://www.linkedin.com/company/shecluded/" target="_blank"><i class="fa fa-linkedin text-white"></i></a></li>
+                                </ul>
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+                </div> <!-- end container -->
+                <hr class="col-md-9 mx-auto"/>
+                <div class="col-md-9 mx-auto">
+                    <div>
+                        <p class="text-white ">Copyright <script>document.write(new Date().getFullYear())</script> Shecluded Solutions Ltd.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- Back to top -->
         <a href="#" onclick="topFunction()" id="back-to-top" class="back-to-top rounded-pill fs-5"><i data-feather="arrow-up" class="fea icon-sm icons align-middle"></i></a>
