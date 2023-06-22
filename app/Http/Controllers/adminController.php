@@ -254,7 +254,7 @@ class adminController extends Controller
           
             $delimeters = [
                 'variation_type'=>'required|string',
-                'price'=>'required|numeric|gt:0',
+                'price'=>'required|numeric',
             ];
       
        
@@ -301,7 +301,7 @@ class adminController extends Controller
           
             $delimeters = [
                 'variation_type'=>'required|string',
-                'price'=>'required|numeric|gt:0',
+                'price'=>'required|numeric',
             ];
       
           
@@ -605,7 +605,7 @@ class adminController extends Controller
         $mail->SMTPDebug = 1;
         $mail->Host = 'smtp.gmail.com';
         $mail->Port = 587;
-        $mail->SMTPAuth = true;
+        $mail->SMTPAuth = false;
         $mail->Username = $_ENV['EMAIL_USERNAME'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
         $mail->setFrom($_ENV['EMAIL_USERNAME'],'hub.shecluded.com');
