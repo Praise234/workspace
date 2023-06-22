@@ -20,6 +20,7 @@ Route::post('/administrator/login_user', [adminController::class, 'loginUser'])-
 Route::get('/administrator/logout', [adminController::class, 'logout'])->name('logout');
 Route::get('/check_coworkspace_availability', [adminController::class, 'checkCoworkspaceAvailability'])->name('check_coworkspace_availability');
 Route::get('/book_now', [adminController::class, 'BookNow'])->name('book_now');
+Route::get('/book_free_now', [adminController::class, 'BookFreeNow'])->name('book_free_now');
 Route::post('/book_coworkspace_page', [adminController::class, 'bookCoworkspacePage'])->name('book_coworkspace_page');
 Route::post('/send_mail', [adminController::class, 'SendMail'])->name('send_mail');
 Route::get('/get_category_details', [adminController::class, 'getCategoryDetails'])->name('get_category_details');

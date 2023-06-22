@@ -21,6 +21,7 @@
         <link href="css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
         <link href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link> 
 	    <!-- Custom  Css -->
 	    <link href="css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
         <style>
@@ -544,7 +545,71 @@
                                 
                                 if(response.status == 1){
                                     amn = response.message;
-                                    
+                                if(amn == 0){
+
+                            swal({
+                                title: '',
+                                text: 'Ensure that your details are correct',
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Book!',
+                                cancelButtonText: 'No, cancel',
+                                confirmButtonClass: 'confirm-class',
+                                cancelButtonClass: 'cancel-class',
+
+                            })
+                            .then((isConfirm) => {
+                                if (isConfirm.value) {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: '{{Route("book_free_now")}}',
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            'booking_date': $('#booking_date_modal').val(),
+                                            'booking_time': $('#booking_time_modal').val(),
+                                            'plan': $('#plan_modal').val(),
+                                            'product': "Coworkspace",
+                                            'duration': $('#plan_modal').val(),
+                                            'no_of_seats': $('#no_of_seats_modal').val(),
+                                            'cus_name': $('#cus_name_modal').val().trim(),
+                                            'cus_email': $('#cus_email_modal').val().trim(),
+                                            
+                                        },
+                                        beforeSend: function() {
+                                            swal({
+                                                title: 'Processing...',
+                                                allowEscapeKey: false,
+                                                allowOutsideClick: false,
+                                                onOpen: () => {
+                                                    swal.showLoading();
+                                                }
+                                            });
+                                        },
+                                        
+                                        success: function(response) {
+                                            document.getElementById("form").reset();
+                                            if(response.status == 1){
+                                                swal("Success!", response.message, "success").then(function() {
+                                                    location.reload();
+                                                });
+
+                                            }else{
+                                                console.log(response);
+                                            }
+                                            
+                                        },
+                                        error: function(xhr, status, error) {
+                                            alert(xhr.responseText);
+                                            // stopLoader('body');
+                                        }
+                                    });
+                                }
+                            });
+
+
+                }else{
                               
                 
                 
@@ -570,7 +635,7 @@
                                 'booking_date': $('#booking_date_modal').val(),
                                 'booking_time': $('#booking_time_modal').val(),
                                 'plan': $('#plan_modal').val(),
-                                'product': "coworkspace",
+                                'product': "Coworkspace",
                                 'duration': $('#plan_modal').val(),
                                 'no_of_seats': $('#no_of_seats_modal').val(),
                                 'cus_name': $('#cus_name_modal').val().trim(),
@@ -598,6 +663,7 @@
                 });
 
                 handler.openIframe();
+            }
                 }else{
                     alert(response);
                 }
@@ -740,7 +806,7 @@
                                         <div class="mb-3">                                               
                                             <label class="form-label fs-6">Time <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
-                                                <input type="time" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="booking_time{{$product->id}}" id="booking_time_modal{{$product->id}}" required="">
+                                                <input type="time" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="booking_time{{$product->id}}" id="booking_time_modal{{$product->id}}" >
                                             </div>
                                         </div>
                                     </div><!--end col-->
@@ -794,8 +860,10 @@
                 });
                 function availabilityCheck{{$product->id}}(){
                     if($('#plan_modal{{$product->id}}').val() == "hourly"){
+                        document.getElementById("hourly{{$product->id}}").required = true
                         $("#hourly{{$product->id}}").show();
                     }else{
+                        document.getElementById("hourly{{$product->id}}").required = false
                         $("#hourly{{$product->id}}").hide();
                     }
                     $.ajax({
@@ -871,6 +939,71 @@
                                 
                                 if(response.status == 1){
                                     amn = response.message;
+
+                                    if(amn == 0){
+
+                            swal({
+                                title: '',
+                                text: 'Ensure that your details are correct',
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Book!',
+                                cancelButtonText: 'No, cancel',
+                                confirmButtonClass: 'confirm-class',
+                                cancelButtonClass: 'cancel-class',
+
+                            })
+                            .then((isConfirm) => {
+                                if (isConfirm.value) {
+                                    $.ajax({
+                                        type: 'GET',
+                                        url: '{{Route("book_free_now")}}',
+                                        data: {
+                                            "_token": "{{ csrf_token() }}",
+                                            'booking_date': $('#booking_date_modal{{$product->id}}').val(),
+                                            'booking_time': $('#booking_time_modal{{$product->id}}').val(),
+                                            'plan': $('#plan_modal{{$product->id}}').val(),
+                                            'product': "{{$product->name}}",
+                                            'duration': $('#plan_modal{{$product->id}}').val(),
+                                            'no_of_seats': $('#no_of_seats_modal{{$product->id}}').val(),
+                                            'cus_name': $('#cus_name_modal{{$product->id}}').val().trim(),
+                                            'cus_email': $('#cus_email_modal{{$product->id}}').val().trim(),
+                                        },
+                                        beforeSend: function() {
+                                            swal({
+                                                title: 'Processing...',
+                                                allowEscapeKey: false,
+                                                allowOutsideClick: false,
+                                                onOpen: () => {
+                                                    swal.showLoading();
+                                                }
+                                            });
+                                        },
+                                        
+                                        success: function(response) {
+                                            document.getElementById("form").reset();
+                                            if(response.status == 1){
+                                                swal("Success!", response.message, "success").then(function() {
+                                                    location.reload();
+                                                });
+
+                                            }else{
+                                                console.log(response);
+                                            }
+                                            
+                                        },
+                                        error: function(xhr, status, error) {
+                                            alert(xhr.responseText);
+                                            // stopLoader('body');
+                                        }
+                                    });
+                                }
+                            });
+
+
+                            }else{
                                     
                                
                 $('#errorcoworkspace_modal{{$product->id}}').hide();
@@ -923,6 +1056,7 @@
                 
 
                 handler.openIframe();
+            }
 
             }else{
                 alert(response);
@@ -937,8 +1071,10 @@
          }
          $(document).ready(function(){
             if($('#plan_modal{{$product->id}}').val() == "hourly"){
+                document.getElementById("hourly{{$product->id}}").required = true
                 $("#hourly{{$product->id}}").show();
             }else{
+                document.getElementById("hourly{{$product->id}}").required = false
                 $("#hourly{{$product->id}}").hide();
             }
         });
@@ -967,6 +1103,6 @@
 
            
         </script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
     </body>
 </html>

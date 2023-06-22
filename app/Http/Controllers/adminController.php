@@ -372,6 +372,15 @@ class adminController extends Controller
             'plan'=>'required|string',
             'no_of_seats'=>'required|numeric|gt:0',
           ];
+
+        if($request->plan == "hourly"){
+            $delimeters = [
+                'booking_date'=>'required|date|after_or_equal:' . date("Y-m-d", strtotime("now")),
+                'booking_time'=>'required',
+                'plan'=>'required|string',
+                'no_of_seats'=>'required|numeric|gt:0',
+            ];
+        }
         
        
 
@@ -595,6 +604,31 @@ class adminController extends Controller
 
             echo $result['data']['status'];
         }
+     }
+     public function BookFreeNow(Request $request){
+        
+      
+            $booking = new Bookings;
+            $booking->customer_name =  $request->cus_name;
+            $booking->product = $request->product;
+            $booking->amount_paid =  0;
+            // $durArr = ["Hourly" => 1, "Daily" => 2, "Weekly" => 3, "Monthly"=> 4];
+            $booking->duration = $request->duration;
+            $booking->quantity =  $request->no_of_seats;
+            
+            
+
+            switch ($request->plan) {
+                case 'hourly':
+                    $booking->booked_date_time = date("Y-m-d H:i:s", strtotime($request->booking_date . " " . $request->booking_time));
+                    break;
+                default:
+                    $booking->booked_date_time = date("Y-m-d 00:00:00", strtotime($request->booking_date));
+                    break;
+            }
+            $booking->save();
+
+            return response()->json(['status'=>1, 'message' => "Your booking was successful!"]);
      }
      public function SendMail(Request $request){
         $to = 'pakzzy207@gmail.com'; 
