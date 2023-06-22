@@ -141,9 +141,27 @@
                                             @csrf
                                             <input type="hidden" name="id" id="id" value="{{$product->id}}">
                                             <div class="col-12 mb-2">
-                                              <img src="/storage/{{$product->imgUrl}}"  id="img" alt="image" class="d-block mb-3" style="height: 200px;width:200px;" />
+                                              <img src="/storage/{{$product->imgUrl}}" id="img{{$product->id}}" alt="image" class="d-block mb-3 img" style="height: 200px;width:200px;" />
                                               <label class="form-label float-start" >Image:</label>
-                                              <input type="file" class="form-control" name="prodImg" id = "prodImg" />
+                                              <input type="file" class="form-control prodImg" name="prodImg" id = "prodImg{{$product->id}}" />
+                                              <script>
+                                                $(function(){
+                                                    $('#prodImg{{$product->id}}').change(function(){
+                                                        var input = this;
+                                                        var url = $(this).val();
+                                                        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                                                        if (input.files && input.files[0] && (ext == "png" || ext == "jpeg" || ext == "jpg")) 
+                                                        {
+                                                            var reader = new FileReader();
+
+                                                            reader.onload = function (e) {
+                                                            $('#img{{$product->id}}').attr('src', e.target.result);
+                                                            }
+                                                        reader.readAsDataURL(input.files[0]);
+                                                        }
+                                                    });
+                                                  });
+                                              </script>
                                             </div>
                                             <div class="col-12 mb-2">
                                               <label class="form-label float-start">Product Name</label>
