@@ -81,74 +81,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ URL::to('administrator/products/coworkspace')}}" class="menu-label mt-3">
+                    <a href="{{ URL::to('administrator/categories/')}}" class="menu-label mt-3">
                         <div class="parent-icon"><i class="bi bi-laptop"></i>
                         </div>
-                        <div class="menu-title">Coworkspace</div>
+                        <div class="menu-title">Categories</div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ URL::to('administrator/products/coworkspace_daily')}}" class="menu-label mt-3">
+                    <a href="{{ URL::to('administrator/show_variations/')}}" class="menu-label mt-3">
                         <div class="parent-icon"><i class="bi bi-laptop"></i>
                         </div>
-                        <div class="menu-title">Coworkspace Daily</div>
+                        <div class="menu-title">Variations</div>
                     </a>
-                </li> 
-                <li>
-                    <a href="{{ URL::to('administrator/products/coworkspace_weekly')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-laptop"></i>
-                        </div>
-                        <div class="menu-title">Coworkspace Weekly</div>
-                    </a>
-                </li> 
-                <li>
-                    <a href="{{ URL::to('administrator/products/coworkspace_monthly')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-laptop"></i>
-                        </div>
-                        <div class="menu-title">Coworkspace Monthly</div>
-                    </a>
-                </li> 
-                <li>
-                    <a href="{{ URL::to('administrator/products/private_offices')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-building"></i>
-                        </div>
-                        <div class="menu-title">Private Offices</div>
-                    </a>
-                </li>   
-                
-                <li>
-                    <a href="{{ URL::to('administrator/products/meeting_room')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-house"></i>
-                        </div>
-                        <div class="menu-title">Meeting Room</div>
-                    </a>
-                   
-                </li>
-                
-                <li>
-                    <a href="{{ URL::to('administrator/products/virtual_office')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-badge-vr"></i>
-                        </div>
-                        <div class="menu-title">Virtual Office</div>
-                    </a>
-                </li> 
-               
-
-                <!-- <li>
-                    <a href="{{ URL::to('administrator/products/children_playroom')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-dice-6-fill"></i>
-                        </div>
-                        <div class="menu-title">Children Playroom</div>
-                    </a>
-                </li>  -->
-
-                <li>
-                    <a href="{{ URL::to('administrator/products/event_space')}}" class="menu-label mt-3">
-                        <div class="parent-icon"><i class="bi bi-textarea"></i>
-                        </div>
-                        <div class="menu-title">Event Space</div>
-                    </a>
-                </li> 
+                </li>              
                 <li>
                     <a href="{{ URL::to('administrator/unavailable')}}" class="menu-label mt-3">
                         <div class="parent-icon"><i class="bi bi-calendar-event"></i>
@@ -215,6 +160,21 @@
 
                 reader.onload = function (e) {
                 $('#img').attr('src', e.target.result);
+                }
+            reader.readAsDataURL(input.files[0]);
+            }
+        });
+
+        $('#product_image').change(function(){
+            var input = this;
+            var url = $(this).val();
+            var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+            if (input.files && input.files[0] && (ext == "png" || ext == "jpeg" || ext == "jpg")) 
+            {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                $('#img1').attr('src', e.target.result);
                 }
             reader.readAsDataURL(input.files[0]);
             }

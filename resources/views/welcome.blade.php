@@ -1,3 +1,6 @@
+@php
+  use App\Models\Variations;
+@endphp
 <!doctype html>
 <html lang="en">
 	<head>
@@ -102,9 +105,12 @@
                                                 <label class="form-label fs-6">Plan <span class="text-danger">*</span></label>
                                                 <div class="form-icon position-relative">
                                                     <select onchange="returnCheck()" name="plan" id="plan" class="form-control" required="">
-                                                        <option value="Daily">Daily (#5000)</option>
-                                                        <option value="Weekly">Weekly (#25000)</option>
-                                                        <option value="Monthly">Monthly (#100000)</option>
+                                                    @php
+                                                        $variations = Variations::where(['product_id' => $coworkspace[0]->id])->get();
+                                                    @endphp
+                                                    @foreach($variations as $variation)
+                                                    <option value="{{$variation->variation_type}}">{{ucfirst($variation->variation_type)}} (#{{number_format($variation->price)}})</option>
+                                                    @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -167,6 +173,10 @@
                
                 <div class="row position-relative z-index-1">
                     @foreach($products as $product)
+                    @php
+                        $variations = Variations::where(['product_id' => $product->id])->get();
+                    @endphp
+                    @if($variations->count() > 0)
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="pricing pricing-primary shadow rounded-md text-center bg-white">
                             <div class="border-bottom p-4">
@@ -174,35 +184,24 @@
                             </div>
 
                             <div class="p-4 text-start">
-                                <h5 class="text-pink">{{ucwords(str_replace("_", " ", $product->name))}}:</h5>
+                                <h5 class="text-pink">{{ucwords($product->name)}}:</h5>
 
                                 <ul class="list-unstyled mb-0 ps-0">
-                                    <li class="text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>#{{number_format($product->price)}}</li>
-                                    <li class="text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>
-                                        @switch ($product->duration) 
-                                            @case (1)
-                                                {{"Hourly Plan"}}
-                                                @break
-                                            @case (2)
-                                                {{"Daily Plan"}}
-                                                @break
-                                            @case (3)
-                                                {{"Weekly Plan"}}
-                                                @break
-                                            @default
-                                                {{"Monthly Plan"}}
-                                                @break
-                                        @endswitch
-                                    </li>
+
+                                @foreach($variations as $variation)
+                                    <li class="text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>{{ucfirst($variation->variation_type)}} (#{{number_format($variation->price)}})</li>
+                                @endforeach
+                                    
+                                    
                                 </ul>
                                 
                                 <a href="" class="btn btn-primary btn-pills border-0 w-100 mt-4" id="bookspace{{$product->id}}" data-bs-toggle="modal" 
-                                            data-bs-target="#{{$product->name}}" title="{{$product->name}}" data-bs-original-title="{{$product->name}}" aria-label="{{$product->name}}"  data-bs-toggle="modal">Book</a>
+                                            data-bs-target="#modal{{$product->id}}" title="{{$product->name}}" data-bs-original-title="{{$product->name}}" aria-label="{{$product->name}}"  data-bs-toggle="modal">Book</a>
                                           
                             </div>
                         </div>
                     </div><!--end col-->
-                    
+                    @endif
                     @endforeach
 
                     
@@ -385,27 +384,27 @@
         <script src="js/jquery.min.js"></script>
         <script>
         $(document).ready(function(){
-        // Add smooth scrolling to all links
-        $("a").on('click', function(event) {
+            // Add smooth scrolling to all links
+            $("a").on('click', function(event) {
 
-            // Make sure this.hash has a value before overriding default behavior
-            if (this.hash !== "") {
-            // Prevent default anchor click behavior
-            event.preventDefault();
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
 
-            // Store hash
-            var hash = this.hash;
+                // Store hash
+                var hash = this.hash;
 
-            // Using jQuery's animate() method to add smooth page scroll
-            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 500, function(){
-        
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 500, function(){
+            
 
+                });
+                } // End if
             });
-            } // End if
-        });
         });
     </script>
       <script>
@@ -422,6 +421,7 @@
                             'product': "coworkspace",
                             'booking_time': $('#booking_time').val(),
                             'no_of_seats': $('#no_of_seats').val(),
+                            'id': {{$coworkspace[0]->id}},
                         },
                         beforeSend: function() {
                             $('#errorcoworkspace').hide();
@@ -484,6 +484,7 @@
                             'product': "coworkspace",
                             'booking_time': $('#booking_time_modal').val(),
                             'no_of_seats': $('#no_of_seats_modal').val(),
+                            'id': {{$coworkspace[0]->id}},
                         },
                         beforeSend: function() {
                             $('#errorcoworkspace_modal').hide();
@@ -526,20 +527,29 @@
                             return false;
                 }
                 $('#errorcoworkspace_modal').hide();
+
+
                 let amn = 0;
-                switch ($('#plan_modal').val()) {
-                    case 'Daily':
-                        amn = 5000;
-                        break;
-                    case 'Weekly':
-                        amn = 25000;
-                        break;
-                    default:
-                        amn = 100000;
-                        break;
-                }
+                $.ajax({
+                            type: 'GET',
+                            url: '{{Route("get_category_details")}}',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                'plan': $('#plan_modal').val(),
+                                'id': {{$coworkspace[0]->id}},
+                                
+                            },
+                            
+                            success: function(response) {
+                                
+                                if(response.status == 1){
+                                    amn = response.message;
+                                    
+                              
+                
+                
                 let handler = PaystackPop.setup({
-                    key: 'pk_live_f23f6c56185fef862a989e2925a39154125e2dc8', // Replace with your public key
+                    key: '{{$_ENV['LIVE_PUBLIC_KEY']}}', // Replace with your public key
                     email: document.getElementById("cus_email_modal").value,
                     amount:  $('#no_of_seats_modal').val() * amn * 100,
                     currency: 'NGN',
@@ -588,6 +598,16 @@
                 });
 
                 handler.openIframe();
+                }else{
+                    alert(response);
+                }
+                
+                    },
+                    error: function(xhr, status, error) {
+                        alert(xhr.responseText);
+                        // stopLoader('body');
+                    }
+                });
             }
         </script>
           <!-- Modal -->
@@ -636,9 +656,12 @@
                                         <label class="form-label fs-6">Plan <span class="text-danger">*</span></label>
                                         <div class="form-icon position-relative">
                                             <select name="plan" onchange="availabilityCheck()" id="plan_modal" class="form-control" required="">
-                                                <option value="Daily">Daily (#5000)</option>
-                                                <option value="Weekly">Weekly (#25000)</option>
-                                                <option value="Monthly">Monthly (#100000)</option>
+                                                @php
+                                                    $variations = Variations::where(['product_id' => $coworkspace[0]->id])->get();
+                                                @endphp
+                                                @foreach($variations as $variation)
+                                                    <option value="{{$variation->variation_type}}">{{ucfirst($variation->variation_type)}} (#{{number_format($variation->price)}})</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -667,8 +690,12 @@
             </div>
         </div>
         @foreach($products as $product)
+            @php
+                $variations = Variations::where(['product_id' => $product->id])->get();
+            @endphp
+            @if($variations->count() > 0)
             <!-- Modal -->
-            <div class="modal fade" id="{{$product->name}}" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="modal{{$product->id}}" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -708,40 +735,33 @@
                                             </div>
                                         </div>
                                     </div><!--end col-->
-                                    @if($product->duration == 1)
-                                        <div class="col-md-12">
-                                            <div class="mb-3">                                               
-                                                <label class="form-label fs-6">Time <span class="text-danger">*</span></label>
-                                                <div class="form-icon position-relative">
-                                                    <input type="time" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="booking_time{{$product->id}}" id="booking_time_modal{{$product->id}}" required="">
-                                                </div>
-                                            </div>
-                                        </div><!--end col-->
-                                    @endif
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label class="form-label fs-6">Plan </label>
+                                
+                                    <div class="col-md-12" id = "hourly{{$product->id}}">
+                                        <div class="mb-3">                                               
+                                            <label class="form-label fs-6">Time <span class="text-danger">*</span></label>
                                             <div class="form-icon position-relative">
-                                            @switch ($product->duration) 
-                                                @case (1)
-                                                    {{"Hourly Plan"}}
-                                                    @break
-                                                @case (2)
-                                                    {{"Daily Plan"}}
-                                                    @break
-                                                @case (3)
-                                                    {{"Weekly Plan"}}
-                                                    @break
-                                                @default
-                                                    {{"Monthly Plan"}}
-                                                    @break
-                                            @endswitch
-                                            - #{{number_format($product->price)}}
-                                                <input type="hidden" name="plan"  required="" id="plan_modal{{$product->id}}"
-                                                value = "@switch ($product->duration) @case (1){{'Hourly'}}@break @case (2){{'Daily'}}@break @case (3){{'Weekly'}}@break @default{{'Monthly'}}@break @endswitch">
+                                                <input type="time" onchange="availabilityCheck{{$product->id}}()" class="form-control" name="booking_time{{$product->id}}" id="booking_time_modal{{$product->id}}" required="">
                                             </div>
                                         </div>
                                     </div><!--end col-->
+                            
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label fs-6">Plan <span class="text-danger">*</span></label>
+                                            <div class="form-icon position-relative">
+                                                <select name="plan" onchange="availabilityCheck{{$product->id}}()" id = 'plan_modal{{$product->id}}' class="form-control" required="">
+                                                    @php
+                                                        $variations = Variations::where(['product_id' => $product->id])->get();
+                                                    @endphp
+                                                    @foreach($variations as $variation)
+                                                        <option value="{{$variation->variation_type}}">{{ucfirst($variation->variation_type)}} (#{{number_format($variation->price)}})</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div><!--end col-->
+                                    
                                     <div class="col-md-12">
                                         <div class="mb-3">
    					    <div class="form-icon position-relative">
@@ -773,7 +793,11 @@
                     $("#book_now_modal{{$product->id}}").css('display', "grid");
                 });
                 function availabilityCheck{{$product->id}}(){
-                    
+                    if($('#plan_modal{{$product->id}}').val() == "hourly"){
+                        $("#hourly{{$product->id}}").show();
+                    }else{
+                        $("#hourly{{$product->id}}").hide();
+                    }
                     $.ajax({
                         type: 'GET',
                         url: '{{Route("check_coworkspace_availability")}}',
@@ -784,6 +808,7 @@
                             'product': "{{$product->name}}",
                             'booking_time': $('#booking_time_modal{{$product->id}}').val(),
                             'no_of_seats': $('#no_of_seats_modal{{$product->id}}').val(),
+                            'id': {{$product->id}},
                         },
                         beforeSend: function() {
                             $('#errorcoworkspace_modal{{$product->id}}').hide();
@@ -831,11 +856,28 @@
                             $('#errorcoworkspace_modal{{$product->id}}').show();
                             return false;
                 }
+                let amn = 0;
+                $.ajax({
+                            type: 'GET',
+                            url: '{{Route("get_category_details")}}',
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                'plan': $('#plan_modal{{$product->id}}').val(),
+                                'id': {{$product->id}},
+                                
+                            },
+                            
+                            success: function(response) {
+                                
+                                if(response.status == 1){
+                                    amn = response.message;
+                                    
+                               
                 $('#errorcoworkspace_modal{{$product->id}}').hide();
                 let handler = PaystackPop.setup({
-                    key: 'pk_live_f23f6c56185fef862a989e2925a39154125e2dc8', // Replace with your public key
+                    key: '{{$_ENV['LIVE_PUBLIC_KEY']}}', // Replace with your public key
                     email: document.getElementById("cus_email_modal{{$product->id}}").value,
-                    amount:  $('#no_of_seats_modal{{$product->id}}').val() * {{$product->price}} * 100,
+                    amount:  $('#no_of_seats_modal{{$product->id}}').val() * amn * 100,
                     currency: 'NGN',
                     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     label: "Shecluded",
@@ -854,7 +896,7 @@
                                 'booking_time': $('#booking_time_modal{{$product->id}}').val(),
                                 'plan': $('#plan_modal{{$product->id}}').val(),
                                 'product': "{{$product->name}}",
-                                'duration': "@switch ($product->duration) @case (1){{'Hourly'}}@break @case (2){{'Daily'}}@break @case (3){{'Weekly'}}@break @default{{'Monthly'}}@break @endswitch",
+                                'duration': $('#plan_modal{{$product->id}}').val(),
                                 'no_of_seats': $('#no_of_seats_modal{{$product->id}}').val(),
                                 'cus_name': $('#cus_name_modal{{$product->id}}').val().trim(),
                                 'cus_email': $('#cus_email_modal{{$product->id}}').val().trim(),
@@ -878,10 +920,30 @@
                         });
                     }
                 });
+                
 
                 handler.openIframe();
+
+            }else{
+                alert(response);
             }
-            </script>
+                    
+                },
+                error: function(xhr, status, error) {
+                    alert(xhr.responseText);
+                    // stopLoader('body');
+                }
+            });
+         }
+         $(document).ready(function(){
+            if($('#plan_modal{{$product->id}}').val() == "hourly"){
+                $("#hourly{{$product->id}}").show();
+            }else{
+                $("#hourly{{$product->id}}").hide();
+            }
+        });
+    </script>
+             @endif
         @endforeach
 
 
@@ -902,6 +964,8 @@
                     elem.fadeIn();
                 });
             }
+
+           
         </script>
         
     </body>

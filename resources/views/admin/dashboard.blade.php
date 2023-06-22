@@ -134,12 +134,12 @@
                      <div class="table-responsive mt-2">
                       <table class="table align-middle mb-0">
                         <thead class="table-light">
-                          <tr>
+                        <tr class="text-center">
                             <th>#ID</th>
                             <th>Name</th>
                             <th>Total Slots</th>
-                            <!-- <th>Available Slots Today</th> -->
-                            <th>Price</th>
+                            <th>Open on Saturday</th>
+                            <th>Open on Sunday</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -148,15 +148,15 @@
                           <!-- <td colspan = 6 class="text-center">No record found</td> -->
                          
                           @foreach($products as $product)
-                          <tr>
+                          <tr class="text-center">
                             <td>{{$product->id}}</td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->total_slots}}</td>
-                            <!-- <td></td> -->
-                            <td>#{{$product->price . ".00"}}</td>
+                            <td>{{($product->open_saturday) ? 'Yes' : 'No'}}</td>
+                            <td>{{($product->open_sunday) ? 'Yes' : 'No'}}</td>
                             <td>
                               <div class="d-flex align-items-center gap-3 fs-6">
-                                <a href="javascript:;" class="text-dark ms-3" data-bs-toggle="modal" data-bs-target="#viewProduct{{$product->id}}" title="" data-bs-original-title="Edit info" aria-label="Edit"  data-bs-toggle="modal" data-bs-target="#viewTruck"><i class="bi bi-eye-fill"></i></a>
+                                <a href="javascript:;" class="text-dark mx-auto" data-bs-toggle="modal" data-bs-target="#viewProduct{{$product->id}}" title="" data-bs-original-title="Edit info" aria-label="Edit"  data-bs-toggle="modal" data-bs-target="#viewTruck"><i class="bi bi-eye-fill"></i></a>
                                  <!-- Modal -->
                                  <div class="modal fade" id="viewProduct{{$product->id}}" tabindex="-1" aria-hidden="true">
                                   <div class="modal-dialog modal-fullscreen">
@@ -192,8 +192,12 @@
                                                   </td>
                                                 </tr> -->
                                                 <tr class="text-center">
-                                                  <td>Price</td>
-                                                  <td>#{{$product->price . ".00"}}</td>
+                                                  <td>Open on Saturday</td>
+                                                  <td>{{($product->open_saturday) ? 'Yes' : 'No'}}</td>
+                                                </tr>
+                                                <tr class="text-center">
+                                                  <td>Open on Saturday</td>
+                                                  <td>{{($product->open_sunday) ? 'Yes' : 'No'}}</td>
                                                 </tr>
                                               </tbody>
                                             </table>

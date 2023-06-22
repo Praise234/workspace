@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('product');
             $table->double('amount_paid');
-            $table->integer('duration');
+            $table->string('duration');
             $table->integer('quantity');
             $table->datetime('booked_date_time');
             $table->timestamps();

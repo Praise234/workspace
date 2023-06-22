@@ -9,7 +9,7 @@
               
               <div class="col-md-8 col-lg-5 mx-auto mb-5">
               <div class="mt-3"></div>
-                <h6 class="mb-0 text-uppercase">Add New Income</h6>
+                <h6 class="mb-0 text-uppercase">Confirm Booking</h6>
                 <hr/>
                 <div class="alert alert-danger print-error-msg" style="display:none">
                   <ul></ul>
@@ -74,7 +74,7 @@
                 <div class="card radius-10 w-100">
                   <div class="card-body">
                     <div class="d-flex align-items-center">
-                      <h6 class="mb-0">Trucks</h6>
+                      <h6 class="mb-0">Bookings</h6>
                       <div class="fs-5 ms-auto dropdown">
                          <div class="dropdown-toggle dropdown-toggle-nocaret cursor-pointer" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></div>
                            
