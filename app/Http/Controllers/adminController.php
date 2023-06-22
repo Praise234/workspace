@@ -14,45 +14,45 @@ use PHPMailer\PHPMailer\Exception;
 
 class adminController extends Controller
 {
-    public function dashboard(){
-        $bookings = Bookings::limit(5)->get();
-        $products = Products::get();
+    public function dashboard(){ //admin dashboard
+        $bookings = Bookings::limit(5)->get(); //get 5 records of bookings
+        $products = Products::limit(5)->get(); //get 5 records of products
 
         return view('admin.dashboard', compact(['bookings', 'products']));
     }
     
 
-    public function confirmBooking(){
+    public function confirmBooking(){ // confirm a booking page load
         $bookings = Bookings::paginate(10);
         $products = Products::get();
 
         return view('admin.confirm', compact(['bookings', 'products']));
     }
 
-    public function confirmBooking_search(Request $request){
-        $old = $request;
+    public function confirmBooking_search(Request $request){ // confirm a booking search
+        $old = $request; // get request value for return into view
         $bookings = Bookings::where('customer_name', 'like', "%" . $request->customer_name . "%")
                             ->where('product', 'like', "%" . $request->products . "%")
-                            ->where('created_at', 'like', "%" . $request->date_paid . "%")->paginate(10);
+                            ->where('created_at', 'like', "%" . $request->date_paid . "%")->paginate(10); //get booking based on parameters
         $products = Products::get();
         return view('admin.confirm', compact(['bookings', 'products', 'old']));
     }
 
-    public function showCategories(){
+    public function showCategories(){ // categories page load
         $products = Products::paginate(10);
 
 
         return view('admin.products', compact(['products']));
     }
 
-    public function showVariations(){
+    public function showVariations(){ // variations page load
         $products = Products::get();
 
         return view('admin.variations', compact(['products']));
     }
     
 
-    public function variationSearch(Request $request){
+    public function variationSearch(Request $request){ // search for product and it's variation
         $products = Products::get();
         $product_id = $request->products;
         $variations = Variations::where(['product_id' => $request->products])->get();
@@ -110,7 +110,7 @@ class adminController extends Controller
         
         
 
-        if($request->file('prodImg')){
+        if($request->file('prodImg')){ // if image was changed
             $path = $request->file('prodImg')->store('public');
             $imgUrl = substr($path,7);
             $product->imgUrl = $imgUrl;
@@ -126,8 +126,8 @@ class adminController extends Controller
 
         return response()->json(['status'=>1, 'message'=>'Category updated successfully!']);
     }
-    public function addCategory(Request $request){
-
+    public function addCategory(Request $request){ //add new category
+ 
         $messages = [
             'required' => 'The :attribute is required',
             'string'    => 'The :attribute must be text format',
@@ -188,7 +188,7 @@ class adminController extends Controller
     }
 
 
-    public function showUnavailable(){
+    public function showUnavailable(){ // load unavailable days
        $unavailables = UnavailableDays::where('from_date_time', '>=', date('Y-m-d H:i:s', strtotime('now')))
                                         ->orwhere('to_date_time', '<=', date('Y-m-d H:i:s', strtotime('now')))
                                         ->orwhere('to_date_time', '>', date('Y-m-d H:i:s', strtotime('now')))->paginate(10);
@@ -201,7 +201,7 @@ class adminController extends Controller
        return response()->json(['status'=>1, 'message'=> $variation->price]);
     }
 
-    public function updateUnavailable(Request $request){
+    public function updateUnavailable(Request $request){ // update an unavailable day
         $id = $request->id; 
         $unavailable = UnavailableDays::find($id);
         $unavailable->from_date_time =  $request->from_date_time;
@@ -211,27 +211,27 @@ class adminController extends Controller
          return redirect()->back()->withSuccess('Your update was successful');
      }
 
-     public function deleteUnavailable(Request $request){
+     public function deleteUnavailable(Request $request){ // delete an unavailable day
         $id = $request->id; 
         $unavailable = UnavailableDays::find($id);
         $unavailable->delete();
         return response()->json(['status'=>1, 'message'=>'Your delete was successful!']);
      }
 
-     public function deleteVariation(Request $request){
+     public function deleteVariation(Request $request){ // delete a variation
         $id = $request->id; 
         $variation = Variations::find($id);
         $variation->delete();
         return response()->json(['status'=>1, 'message'=>'Your delete was successful!']);
      }
-     public function deleteCategory(Request $request){
+     public function deleteCategory(Request $request){ // delete a category
         $id = $request->id; 
         $product = Products::find($id);
         $product->delete();
         return response()->json(['status'=>1, 'message'=>'Your delete was successful!']);
      }
 
-     public function addVariation(Request $request){
+     public function addVariation(Request $request){ // add new variation
 
         $messages = [
             'required' => 'The :attribute is required',
@@ -278,7 +278,7 @@ class adminController extends Controller
         $variation->save();
         return response()->json(['status'=>1, 'message'=>'Variation added successfully!']);
      }
-     public function updateVariation(Request $request){
+     public function updateVariation(Request $request){ // update a variation
 
         $messages = [
             'required' => 'The :attribute is required',
@@ -325,7 +325,7 @@ class adminController extends Controller
         $variation->save();
         return response()->json(['status'=>1, 'message'=>'Variation updated successfully!']);
      }
-     public function addUnavailable(Request $request){
+     public function addUnavailable(Request $request){ // add a day as unavailable
         $unavailable = new UnavailableDays;
         $unavailable->from_date_time =  $request->from_date_time;
         $unavailable->to_date_time = $request->to_date_time;
@@ -333,21 +333,21 @@ class adminController extends Controller
         return redirect()->back()->withSuccess('Addition was successful');
      }
 
-     public function loginUser(Request $request){
+     public function loginUser(Request $request){ // admin login
         if($request->username == "admin1" && $request->password == "sheCluded@2023"){
             \Session::put('user', 'admin');
             return redirect(Route('dashboard'));
         }
         return redirect()->back()->withErrors('Incorrect Username or Password');
      }
-     public function logout(){
+     public function logout(){ // admin logout
         if(Session()->has('user')){
             Session()->pull('user');
         }
         return redirect(Route('login'));
      }
 
-     public function checkCoworkspaceAvailability(Request $request){
+     public function checkCoworkspaceAvailability(Request $request){ // check if slot is still available
 
         $messages = [
             'required' => 'The :attribute is required',
@@ -401,6 +401,7 @@ class adminController extends Controller
 
             // return response()->json(['status'=>400, 'error' => $request->product]);
 
+            // check if any of the selected date or time of booking is set to unavailable
             switch ($request->plan) {
                 case 'hourly':
                     $unavailables = UnavailableDays::where('from_date_time', '<=', date("Y-m-d", strtotime($request->booking_date) ))
@@ -456,10 +457,10 @@ class adminController extends Controller
 
 
 
-            if(!$product->open_saturday && (date('l', strtotime($request->booking_date)) == "Saturday")){
+            if(!$product->open_saturday && (date('l', strtotime($request->booking_date)) == "Saturday")){ // check if saturday is available
                 return response()->json(['status'=>400, 'error'=> 'We do not open on Saturdays']);
             }
-            if(!$product->open_sunday && (date('l', strtotime($request->booking_date)) == "Sunday")){
+            if(!$product->open_sunday && (date('l', strtotime($request->booking_date)) == "Sunday")){ // check if sunday is available
                 return response()->json(['status'=>400, 'error'=> 'We do not open on Sundays']);
             }
 
@@ -467,6 +468,7 @@ class adminController extends Controller
         $product = Products::where(['name' => $request->product])->first();
         
         $num_of_days = date("t", strtotime($request->booking_date . "- 1 month")) - 1 . " days";
+        // count the number of slots for any of the selected date or time of booking has been taken
         switch ($request->plan) {
             case 'hourly':
                 $check = Bookings::where(['product' => $request->product, 'booked_date_time' => date("Y-m-d H:i:s", strtotime($request->booking_date . " " . $request->booking_time))])
@@ -544,20 +546,20 @@ class adminController extends Controller
         
      }
 
-     public function bookCoworkspacePage(Request $request){
+     public function bookCoworkspacePage(Request $request){ 
         $unavailables = UnavailableDays::where('from_date_time', '>', date('Y-m-d H:i:s', strtotime('now')))->paginate(10);
  
          return view('coworkspace', compact(['unavailables']));
      }
 
-     public function welcome(){
+     public function welcome(){ // landing page load
         $products = Products::whereNot('name', 'coworkspace')->get();
 
         $coworkspace = Products::where(['name' => 'coworkspace'])->get();
  
          return view('welcome', compact(['products', 'coworkspace']));
      }
-     public function BookNow(Request $request){
+     public function BookNow(Request $request){ // confirm payment and book the date in the database
         $curl = curl_init();
   
         curl_setopt_array($curl, array(
@@ -605,7 +607,7 @@ class adminController extends Controller
             echo $result['data']['status'];
         }
      }
-     public function BookFreeNow(Request $request){
+     public function BookFreeNow(Request $request){ // book free if price is set to zero
         
       
             $booking = new Bookings;
@@ -630,7 +632,7 @@ class adminController extends Controller
 
             return response()->json(['status'=>1, 'message' => "Your booking was successful!"]);
      }
-     public function SendMail(Request $request){
+     public function SendMail(Request $request){ // contact email send
         $to = 'pakzzy207@gmail.com'; 
 
 

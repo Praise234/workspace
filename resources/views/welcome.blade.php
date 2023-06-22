@@ -344,11 +344,11 @@
         <!--Google Maps-->
 
         <!-- Start Footer -->
-        <footer class=" footer-bar">
+        <footer class=" footer-bar bg-dark">
             <div class="footer-py-30">
                 <div class="container text-center">
                     <div class="row align-items-center">
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             <div class="text-sm-start">
                                 <a href="#" class="logo-footer">
                                     <img src="images/logo.png" alt="" width="200px">
@@ -356,9 +356,9 @@
                             </div>
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-12">
                             <div class="text-lg-end">
-                                <p class="text-dark h5">© <script>document.write(new Date().getFullYear())</script> Shecluded.</p>
+                                <p class="text-white h5">© <script>document.write(new Date().getFullYear())</script> Shecluded.</p>
                             </div>
                         </div>
                         <!--end col-->
