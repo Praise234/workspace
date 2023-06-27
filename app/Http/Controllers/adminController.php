@@ -639,12 +639,12 @@ class adminController extends Controller
         $mail = new PHPMailer;
         $mail->isSMTP();
         $mail->SMTPDebug = 1;
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'email-smtp.eu-west-2.amazonaws.com';
         $mail->Port = 587;
-        $mail->SMTPAuth = false;
+        $mail->SMTPAuth = true;
         $mail->Username = $_ENV['EMAIL_USERNAME'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
-        $mail->setFrom($_ENV['EMAIL_USERNAME'],'hub.shecluded.com');
+        $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
         $mail->addAddress($request->email, $request->name);
         $mail->Subject =  $request->subject;
         $mail->isHTML(true);
