@@ -647,13 +647,15 @@ class adminController extends Controller
         $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
         $mail->addAddress($request->email, $request->name);
         $mail->Subject =  $request->subject;
+      
+	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
         $mail->isHTML(true);
-        $mail->Body = '  <html> 
+	$mail->Body = '  <html> 
         <head> 
             <title>Welcome to CodexWorld</title> 
         </head> 
         <body> 
-        <img src="images/logo.png" />
+        <img src="cid:my-attach" />
             <h1>Thanks you for joining with us!</h1> 
             <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
                 <tr> 
