@@ -310,14 +310,7 @@
                                         {{session('success')}}
                                     </div>
                                 @endif
-                                @if(isset($errors) && count($errors) > 0)
-                                    <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                        <p> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                            {{ $error }}</p>
-                                    @endforeach
-                                    </div>
-                                @endif
+                               
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="row">
