@@ -604,7 +604,6 @@ class adminController extends Controller
             }
             $booking->save();
 
-            $to = $request->cus_email; 
 
 
         $mail = new PHPMailer;
@@ -616,8 +615,8 @@ class adminController extends Controller
         $mail->Username = $_ENV['EMAIL_USERNAME'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
         $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
-        $mail->addAddress($request->email, $request->name);
-        $mail->Subject =  $request->subject;
+        $mail->addAddress($request->cus_email, $request->cus_name);
+        $mail->Subject =  'Welcome';
       
 	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
         $mail->isHTML(true);
@@ -665,7 +664,7 @@ class adminController extends Controller
         
       
             $booking = new Bookings;
-            $booking->customer_name =  $request->cus_email;
+            $booking->customer_name =  $request->cus_name;
             $booking->product = $request->product;
             $booking->amount_paid =  0;
             // $durArr = ["Hourly" => 1, "Daily" => 2, "Weekly" => 3, "Monthly"=> 4];
@@ -687,7 +686,7 @@ class adminController extends Controller
 
 
 
-            $to = $request->cus_email; 
+    
 
 
         $mail = new PHPMailer;
@@ -699,8 +698,8 @@ class adminController extends Controller
         $mail->Username = $_ENV['EMAIL_USERNAME'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
         $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
-        $mail->addAddress($request->email, $request->name);
-        $mail->Subject =  $request->subject;
+        $mail->addAddress($request->cus_email, $request->cus_name);
+        $mail->Subject =  'Welcome';
       
 	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
         $mail->isHTML(true);
