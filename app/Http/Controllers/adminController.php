@@ -608,7 +608,7 @@ class adminController extends Controller
 
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 1;
+        $mail->SMTPDebug = 0;
         $mail->Host = 'email-smtp.eu-west-2.amazonaws.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
@@ -628,11 +628,11 @@ class adminController extends Controller
          <p  style="padding-left: 30px;">Dear ' .
             $request->cus_name .
         ',</p>
-            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
+            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 500px; height: 400px; margin: auto; margin-top: 100px;">
                 
                 <h4 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h4> 
                 
-                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
+                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 90%; padding: 30px 10px; margin: auto;"> 
                     <tr> 
                         <th>Name:</th><td>' . $request->cus_name . '</td> 
                     </tr> 
@@ -691,7 +691,7 @@ class adminController extends Controller
 
         $mail = new PHPMailer;
         $mail->isSMTP();
-        $mail->SMTPDebug = 1;
+        $mail->SMTPDebug = 0;
         $mail->Host = 'email-smtp.eu-west-2.amazonaws.com';
         $mail->Port = 587;
         $mail->SMTPAuth = true;
@@ -711,11 +711,11 @@ class adminController extends Controller
          <p  style="padding-left: 30px;">Dear ' .
             $request->cus_name .
         ',</p>
-            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
+            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 500px; height: 400px; margin: auto; margin-top: 100px;">
                 
                 <h4 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h4> 
                 
-                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
+                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 90%; padding: 30px 10px; margin: auto;"> 
                     <tr> 
                         <th>Name:</th><td>' . $request->cus_name . '</td> 
                     </tr> 
