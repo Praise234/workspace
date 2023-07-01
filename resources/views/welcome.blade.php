@@ -186,7 +186,7 @@
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="pricing pricing-primary shadow rounded-md text-center bg-white">
                             <div class="border-bottom p-4">
-                                <img src="storage/{{$product->imgUrl}}" alt="" class="img-fluid" style="height: 200px" />
+                                <img src="storage/{{$product->imgUrl}}" alt=""  style="height: 200px; width: 300px;" />
                             </div>
 
                             <div class="p-4 text-start">
