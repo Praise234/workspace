@@ -656,8 +656,8 @@ class adminController extends Controller
         </head> 
          <body>
             <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
-                <img style="width: 200px;height: 30px; display: block;" src="cid:my-attach" />
-                <h1 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h1> 
+                
+                <h4 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h4> 
                 
                 <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
                     <tr> 
@@ -677,6 +677,8 @@ class adminController extends Controller
                 </p>
                 <p style="padding-left: 30px;">Shecluded Team.</p>
             </div> 
+
+            <img style="width: 200px;height: 30px; display: block;" src="cid:my-attach" />
   </body> 
     </html>';
         
