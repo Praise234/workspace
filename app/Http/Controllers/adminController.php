@@ -604,6 +604,60 @@ class adminController extends Controller
             }
             $booking->save();
 
+            $to = $request->cus_email; 
+
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 1;
+        $mail->Host = 'email-smtp.eu-west-2.amazonaws.com';
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = $_ENV['EMAIL_USERNAME'];
+        $mail->Password = $_ENV['EMAIL_PASSWORD'];
+        $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
+        $mail->addAddress($request->email, $request->name);
+        $mail->Subject =  $request->subject;
+      
+	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
+        $mail->isHTML(true);
+        $mail->Body = '<html> 
+        <head> 
+            <title>Welcome to Shecluded</title> 
+        </head> 
+         <body>
+         <p  style="padding-left: 30px;">Dear ' .
+            $request->cus_name .
+        ',</p>
+            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
+                
+                <h4 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h4> 
+                
+                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
+                    <tr> 
+                        <th>Name:</th><td>' . $request->cus_name . '</td> 
+                    </tr> 
+                    <tr style=""> 
+                        <th>Email:</th><td>' . $request->cus_email . '</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Space:</th><td>' . $request->product . '</td> 
+                    </tr> 
+                </table> 
+                <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
+    
+                <p  style="padding-left: 30px;">
+                    Regards,
+                </p>
+                <p style="padding-left: 30px;">Shecluded Team.</p>
+            </div> 
+
+            <img style="width: 200px;height: 30px; display: block;" src="cid:my-attach" />
+  </body> 
+    </html>';
+        
+        $mail->send();
+
             echo $result['data']['status'];
         }
      }
@@ -629,6 +683,73 @@ class adminController extends Controller
                     break;
             }
             $booking->save();
+
+
+
+
+            $to = $request->cus_email; 
+
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        $mail->SMTPDebug = 1;
+        $mail->Host = 'email-smtp.eu-west-2.amazonaws.com';
+        $mail->Port = 587;
+        $mail->SMTPAuth = true;
+        $mail->Username = $_ENV['EMAIL_USERNAME'];
+        $mail->Password = $_ENV['EMAIL_PASSWORD'];
+        $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
+        $mail->addAddress($request->email, $request->name);
+        $mail->Subject =  $request->subject;
+      
+	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
+        $mail->isHTML(true);
+        $mail->Body = '<html> 
+        <head> 
+            <title>Welcome to Shecluded</title> 
+        </head> 
+         <body>
+         <p  style="padding-left: 30px;">Dear ' .
+            $request->cus_name .
+        ',</p>
+            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
+                
+                <h4 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h4> 
+                
+                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
+                    <tr> 
+                        <th>Name:</th><td>' . $request->cus_name . '</td> 
+                    </tr> 
+                    <tr style=""> 
+                        <th>Email:</th><td>' . $request->cus_email . '</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Space:</th><td>' . $request->product . '</td> 
+                    </tr> 
+                </table> 
+                <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
+    
+                <p  style="padding-left: 30px;">
+                    Regards,
+                </p>
+                <p style="padding-left: 30px;">Shecluded Team.</p>
+            </div> 
+
+            <img style="width: 200px;height: 30px; display: block;" src="cid:my-attach" />
+  </body> 
+    </html>';
+        
+        $mail->send();
+
+
+
+
+
+
+
+
+
+
 
             return response()->json(['status'=>1, 'message' => "Your booking was successful!"]);
      }
