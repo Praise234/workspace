@@ -585,7 +585,7 @@ class adminController extends Controller
             echo "cURL Error #:" . $err;
         } else {
             $booking = new Bookings;
-            $booking->customer_name =  $request->cus_name;
+            $booking->customer_name =  $request->cus_email;
             $booking->product = $request->product;
             $booking->amount_paid =  $result['data']['amount'] / 100;
             // $durArr = ["Hourly" => 1, "Daily" => 2, "Weekly" => 3, "Monthly"=> 4];
