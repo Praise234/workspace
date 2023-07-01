@@ -31,6 +31,13 @@
                 height: 200px;
                 width: 300px;
                }
+               #home{
+                    background: url('storage/{{$coworkspace[0]->imgUrl}}') center center;
+                    background-size: auto;
+                }
+            a:hover{
+                    text-decoration: underline;
+                }
             @media (max-width: 600px) { 
                #imgg{
                 height: 200px;
