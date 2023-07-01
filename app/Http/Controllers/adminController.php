@@ -642,6 +642,9 @@ class adminController extends Controller
                     <tr> 
                         <th>Space:</th><td>' . $request->product . '</td> 
                     </tr> 
+                    <tr> 
+                        <th>Space:</th><td>' . $request->no_of_seats . '</td> 
+                    </tr>
                 </table> 
                 <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
     
@@ -725,6 +728,9 @@ class adminController extends Controller
                     <tr> 
                         <th>Space:</th><td>' . $request->product . '</td> 
                     </tr> 
+                    <tr> 
+                        <th>Space:</th><td>' . $request->no_of_seats . '</td> 
+                    </tr>
                 </table> 
                 <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
     
@@ -765,28 +771,29 @@ class adminController extends Controller
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
         $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
         $mail->addAddress($request->email, $request->name);
-        $mail->Subject =  $request->subject;
+        $mail->Subject =  $request->subject . '@ hub.shecluded.com contact form';
       
 	    $mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
         $mail->isHTML(true);
         $mail->Body = '<html> 
         <head> 
-            <title>Welcome to Shecluded</title> 
+            <title>Enquiry Submission</title> 
         </head> 
          <body>
+         <p  style="padding-left: 30px;">Dear Admin, </p>
             <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 500px; height: 400px; margin: auto; margin-top: 100px;">
                 
-                <h4 style="margin: auto;display: block;text-align: center;">Thanks you for joining with us!</h4> 
+                <h4 style="margin: auto;display: block;text-align: center;">You have a new enquiry!</h4> 
                 
                 <table cellspacing="0" style="border: 2px dashed #eb2590; width: 90%; padding: 30px 10px; margin: auto;"> 
                     <tr> 
-                        <th>Name:</th><td>CodexWorld</td> 
+                        <th>Name:</th><td>' . $request->name . '</td> 
                     </tr> 
                     <tr style=""> 
-                        <th>Email:</th><td>contact@codexworld.com</td> 
+                        <th>Email:</th><td>' . $request->email . '</td> 
                     </tr> 
                     <tr> 
-                        <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
+                        <th>Message:</th><td>' . $request->message . '</td> 
                     </tr> 
                 </table> 
                 <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
@@ -803,6 +810,7 @@ class adminController extends Controller
         
         $mail->send();
        
-           
+        return redirect()->back()->withSuccess('Inquiry sent successfully, you will receive a response soon');
     }
 }
+return redirect()->back()->withErrors('Incorrect Username or Password');

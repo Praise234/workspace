@@ -304,8 +304,20 @@
                     <div class="col-12 mt-4 pt-2">
                         <form method="post" id="myForm" name="myForm" method="POST" action="{{Route('send_mail')}}">
                             @csrf
-                            <p class="mb-0" id="error-msg"></p>
-                            <div id="simple-msg"></div>
+                                @if(session('success'))
+                                    <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        {{session('success')}}
+                                    </div>
+                                @endif
+                                @if(count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <p> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            {{ $error }}</p>
+                                    @endforeach
+                                    </div>
+                                @endif
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="row">
@@ -331,7 +343,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <textarea name="comments" id="comments" rows="4" class="form-control" placeholder="Message :"></textarea>
+                                        <textarea name="message" id="comments" rows="4" class="form-control" placeholder="Message :"></textarea>
                                     </div>
                                 </div>
                             </div><!--end row-->
