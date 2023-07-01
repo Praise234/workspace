@@ -649,7 +649,7 @@ class adminController extends Controller
         $mail->Subject =  $request->subject;
       
 	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
-        $mail->isHTML(true)
+        $mail->isHTML(true);
         $mail->Body = '<html> 
         <head> 
             <title>Welcome to Shecluded</title> 
