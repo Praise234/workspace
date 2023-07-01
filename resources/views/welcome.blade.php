@@ -27,16 +27,18 @@
         <!-- Custom  Css -->
 	    <link href="css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
         <style>
-            /* @media (min-width: 600px) {  */
-                #home{
-                    background: url('storage/{{$coworkspace[0]->imgUrl}}') center center;
-                    background-size: auto;
-                }
-            a:hover{
-                    text-decoration: underline;
-                }
+            #imgg{
+                height: 200px;
+                width: 300px;
+               }
+            @media (max-width: 600px) { 
+               #imgg{
+                height: 200px;
+                width: 250px;
+               }
                 
-            /* } */
+            }
+            
         </style>
 	</head>
 
@@ -186,7 +188,7 @@
                     <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">
                         <div class="pricing pricing-primary shadow rounded-md text-center bg-white">
                             <div class="border-bottom p-4">
-                                <img src="storage/{{$product->imgUrl}}" alt=""  style="height: 200px; width: 300px;" />
+                                <img src="storage/{{$product->imgUrl}}" alt=""  id="imgg" />
                             </div>
 
                             <div class="p-4 text-start">
@@ -240,7 +242,7 @@
                 <div class="row align-items-center">
                     <div class="col-12 mt-4 pt-2">
                         <video height="540" class="row align-items-center" style="margin:auto;" controls>
-                            <source src="/videos/Shecluded Hub.mov" type="video/quicktime">
+                            <source src="/videos/Shecluded Hub.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div><!--end col-->
