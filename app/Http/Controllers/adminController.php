@@ -649,27 +649,37 @@ class adminController extends Controller
         $mail->Subject =  $request->subject;
       
 	$mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
-        $mail->isHTML(true);
-	$mail->Body = '  <html> 
+        $mail->isHTML(true)
+        $mail->Body = '<html> 
         <head> 
-            <title>Welcome to CodexWorld</title> 
+            <title>Welcome to Shecluded</title> 
         </head> 
-        <body> 
-        <img src="cid:my-attach" />
-            <h1>Thanks you for joining with us!</h1> 
-            <table cellspacing="0" style="border: 2px dashed #FB4314; width: 100%;"> 
-                <tr> 
-                    <th>Name:</th><td>CodexWorld</td> 
-                </tr> 
-                <tr style="background-color: #e0e0e0;"> 
-                    <th>Email:</th><td>contact@codexworld.com</td> 
-                </tr> 
-                <tr> 
-                    <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
-                </tr> 
-            </table> 
-        </body> 
-        </html>';
+         <body>
+            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
+                <div style="display: flex;">
+                    <img style="width: 70px;height: 70px;" src="C:\Users\AyPraise\Desktop\laravel_projects\shecluded\public\images\logo-pink.png" />
+                    <h1 style="margin: auto;">Thanks you for joining with us!</h1> 
+                </div>
+                <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
+                    <tr> 
+                        <th>Name:</th><td>CodexWorld</td> 
+                    </tr> 
+                    <tr style=""> 
+                        <th>Email:</th><td>contact@codexworld.com</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Website:</th><td><a href="http://www.codexworld.com">www.codexworld.com</a></td> 
+                    </tr> 
+                </table> 
+                <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
+    
+                <p  style="padding-left: 30px;">
+                    Regards,
+                </p>
+                <p style="padding-left: 30px;">Shecluded Team.</p>
+            </div> 
+  </body> 
+    </html>';
         
         $mail->send();
        
