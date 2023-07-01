@@ -240,7 +240,7 @@
                 <div class="row align-items-center">
                     <div class="col-12 mt-4 pt-2">
                         <video height="540" class="row align-items-center" style="margin:auto;" controls>
-                            <source src="/videos/shecluded.mp4" type="video/mp4">
+                            <source src="/videos/Shecluded Hub.mov" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                     </div><!--end col-->
