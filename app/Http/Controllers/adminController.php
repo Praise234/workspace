@@ -657,7 +657,7 @@ class adminController extends Controller
          <body>
             <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
                 <div style="display: flex;">
-                    <img style="width: 70px;height: 70px;" src="cid:my-attach" />
+                    <img style="width: 100px;height: 70px;" src="cid:my-attach" />
                     <h1 style="margin: auto;">Thanks you for joining with us!</h1> 
                 </div>
                 <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
