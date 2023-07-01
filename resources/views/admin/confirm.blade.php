@@ -135,6 +135,10 @@
                                               </thead>
                                               <tbody>
                                                 <tr class="text-center">
+                                                  <td>Customer Name</td>
+                                                  <td>{{$booking->customer_name}}</td>
+                                                </tr>
+                                                <tr class="text-center">
                                                   <td>Product</td>
                                                   <td>{{$booking->product}}</td>
                                                 </tr>
@@ -145,15 +149,7 @@
                                                 <tr class="text-center">
                                                   <td>Duration</td>
                                                   <td>
-                                                    @if($booking->duration == 1)
-                                                      {{'hourly'}}
-                                                    @elseif($booking->duration == 2)
-                                                      {{'daily'}}
-                                                    @elseif($booking->duration == 3)
-                                                      {{'weekly'}}
-                                                    @else
-                                                      {{'monthly'}}
-                                                    @endif
+                                                  {{$booking->duration}}
                                                   </td>
                                                 </tr>
                                                 <tr class="text-center">
