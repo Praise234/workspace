@@ -656,10 +656,9 @@ class adminController extends Controller
         </head> 
          <body>
             <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 80%; height: 400px; margin: auto; margin-top: 100px;">
-                <div style="display: flex;">
-                    <img style="width: 200px;height: 30px;" src="cid:my-attach" />
-                    <h1 style="margin: auto;">Thanks you for joining with us!</h1> 
-                </div>
+                <img style="width: 200px;height: 30px; display: block;" src="cid:my-attach" />
+                <h1 style="margin: auto;">Thanks you for joining with us!</h1> 
+                
                 <table cellspacing="0" style="border: 2px dashed #eb2590; width: 70%; padding: 30px 10px; margin: auto;"> 
                     <tr> 
                         <th>Name:</th><td>CodexWorld</td> 
