@@ -310,7 +310,7 @@
                                         {{session('success')}}
                                     </div>
                                 @endif
-                                @if(count($errors) > 0)
+                                @if(isset($errors) && count($errors) > 0)
                                     <div class="alert alert-danger">
                                     @foreach ($errors->all() as $error)
                                         <p> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
