@@ -781,7 +781,7 @@ class adminController extends Controller
         </head> 
          <body>
          <p  style="padding-left: 30px;">Dear Admin, </p>
-            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 500px; height: 400px; margin: auto; margin-top: 100px;">
+            <div style="box-shadow: 2px 3px 9px 9px rgba(0, 0, 0, .2); width: 500px; height: 400px; margin: auto; margin-top: 10px;">
                 
                 <h4 style="margin: auto;display: block;text-align: center;">You have a new enquiry!</h4> 
                 
@@ -796,12 +796,6 @@ class adminController extends Controller
                         <th>Message:</th><td>' . $request->message . '</td> 
                     </tr> 
                 </table> 
-                <p style="margin: auto; width: 70%; margin-top: 30px;">Please proceed to: 8 The Rock Drive, Lekki Phase 1. We\'ll be expecting you.</p>
-    
-                <p  style="padding-left: 30px;">
-                    Regards,
-                </p>
-                <p style="padding-left: 30px;">Shecluded Team.</p>
             </div> 
 
             <img style="width: 200px;height: 30px; display: block;" src="cid:my-attach" />
@@ -813,4 +807,3 @@ class adminController extends Controller
         return redirect()->back()->withSuccess('Inquiry sent successfully, you will receive a response soon');
     }
 }
-return redirect()->back()->withErrors('Incorrect Username or Password');
