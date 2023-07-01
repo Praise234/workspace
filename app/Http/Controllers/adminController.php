@@ -770,7 +770,7 @@ class adminController extends Controller
         $mail->Username = $_ENV['EMAIL_USERNAME'];
         $mail->Password = $_ENV['EMAIL_PASSWORD'];
         $mail->setFrom('noreply@shecluded.com','hub.shecluded.com');
-        $mail->addAddress($request->email, $request->name);
+        $mail->addAddress('hello@shecluded.com', 'Admin');
         $mail->Subject =  $request->subject . '@ hub.shecluded.com contact form';
       
 	    $mail->AddEmbeddedImage("images/logo.png", "my-attach", "images/logo.png");
