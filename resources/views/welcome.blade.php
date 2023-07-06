@@ -28,7 +28,7 @@
 	    <link href="css/style.min.css" rel="stylesheet" type="text/css" id="theme-opt" />
         <style>
             #imgg{
-                height: 200px;
+                height: 400px;
                 width: 300px;
                }
                #home{
