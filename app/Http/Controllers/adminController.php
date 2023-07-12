@@ -107,7 +107,7 @@ class adminController extends Controller
  
         $product->total_slots =  $request->total_slots;
         
-        
+        $product->other_details =  $request->other_details_update;
         
 
         if($request->file('prodImg')){ // if image was changed
@@ -167,7 +167,7 @@ class adminController extends Controller
         $product = new Products;
  
         $product->total_slots =  $request->total_slots;
-        
+        $product->other_details =  $request->other_details_add;
         
         
 

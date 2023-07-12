@@ -207,7 +207,7 @@
                                     <li class="text-muted mb-0"><span class="icon h5 me-2"><i class="uil uil-check-circle align-middle"></i></span>{{ucfirst($variation->variation_type)}} (#{{number_format($variation->price)}})</li>
                                 @endforeach
                                     
-                                    
+                                @if($product->other_details)  <li class="text-muted mb-0">{!!html_entity_decode($product->other_details)!!} </li>@endif
                                 </ul>
                                 
                                 <a href="" class="btn btn-primary btn-pills border-0 w-100 mt-4" id="bookspace{{$product->id}}" data-bs-toggle="modal" 

@@ -185,12 +185,10 @@
                                                   <td>Total Slots</td>
                                                   <td>{{$product->total_slots}}</td>
                                                 </tr>
-                                                <!-- <tr class="text-center">
-                                                  <td>Available Slots Today</td>
-                                                  <td>
-                                                   
-                                                  </td>
-                                                </tr> -->
+                                                <tr class="text-center">
+                                                  <td>Other Details</td>
+                                                  <td>{{$product->other_details}}</td>
+                                                </tr>
                                                 <tr class="text-center">
                                                   <td>Open on Saturday</td>
                                                   <td>{{($product->open_saturday) ? 'Yes' : 'No'}}</td>
